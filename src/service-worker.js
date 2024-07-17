@@ -1,6 +1,6 @@
 import {storage} from '/js/store.js';
-import {ticktickApi} from '/js/ticktickapi.js';
-import {oneClickTickTick, getSelectionInfo} from '/js/oneclickticktick.js';
+import {didaApi} from '/js/didaapi.js';
+import {oneClickDida, getSelectionInfo} from '/js/oneclickdida.js';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
@@ -25,13 +25,13 @@ self.addEventListener('install', function(event) {
 // add context menu items
 chrome.runtime.onInstalled.addListener(function() {
     chrome.contextMenus.create({
-        id: 'OneClickTickTick',
-        title: "Send page to TickTick",
+        id: 'OneClickDida',
+        title: "发送页面到滴答清单",
         contexts: ["page", "frame", "link", "editable", "video", "audio", "browser_action", "page_action", "image"]}
     );
     chrome.contextMenus.create({
-        id: 'OneClickTickTick' + 'Selection',
-        title: "Send selection to TickTick",
+        id: 'OneClickDida' + 'Selection',
+        title: "发送选择到滴答清单",
         contexts: ["selection"]}
     );
 });
@@ -39,19 +39,19 @@ chrome.runtime.onInstalled.addListener(function() {
 
 // handle extension button click
 chrome.action.onClicked.addListener(function(tab) {
-    oneClickTickTick(tab);    
+    oneClickDida(tab);    
 });
 
 
 // listen to context menu
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    if (info.menuItemId == 'OneClickTickTick' + 'Selection') {
+    if (info.menuItemId == 'OneClickDida' + 'Selection') {
         getSelectionInfo(info, tab, function(selection) {
             info.selectionText = selection;
-            oneClickTickTick(tab, info);
+            oneClickDida(tab, info);
         });
-    } else if (info.menuItemId.startsWith('OneClickTickTick')) {
-        oneClickTickTick(tab, info);
+    } else if (info.menuItemId.startsWith('OneClickDida')) {
+        oneClickDida(tab, info);
     }
 });
 
@@ -59,11 +59,11 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 // communication with options page
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message.type === 'task') {
-        oneClickTickTick(message.payload)
+        oneClickDida(message.payload)
     } else if (message.type === 'login') {
-        ticktickApi.login().then(sendResponse);
+        didaApi.login().then(sendResponse);
     } else if (message.type === 'logout') {
-        ticktickApi.logout().then(sendResponse);
+        didaApi.logout().then(sendResponse);
     } else if (message.type === 'getOptions') {
         storage.loadOptions().then(opts => {
             sendResponse(opts);
@@ -72,7 +72,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         console.log("setOptions:", message.payload)
         storage.set(message.payload);
     } else if (message.type === 'isLoggedIn') {
-        ticktickApi.authorized().then(response => {
+        didaApi.authorized().then(response => {
             sendResponse(response);
         });
     } else {

@@ -1,5 +1,5 @@
 import { storage } from '/js/store.js';
-import { ticktickApi } from '/js/ticktickapi.js';
+import { didaApi } from '/js/didaapi.js';
 
 
 async function getTabContentAsMarkdown(tab) {
@@ -23,14 +23,14 @@ async function getTabContentAsMarkdown(tab) {
     var markdown = result[0].result;
     // Finds # only if not immediately followed by whitespace or \ / # " : * ? < > |
     // these symbols all invalidate a string that would otherwise be recognized as a tag
-    // by TickTick. We place an invalid symbol after each found #.
+    // by Dida. We place an invalid symbol after each found #.
     const removeTagsRegex = /#(?![\s\\\/#":*?<>|])/g;
     markdown = markdown.replace(removeTagsRegex, '#/');
     return markdown;
 }
 
-export async function oneClickTickTick(tab, contextInfo) {
-    if (!await ticktickApi.authorized()) {
+export async function oneClickDida(tab, contextInfo) {
+    if (!await didaApi.authorized()) {
         chrome.runtime.openOptionsPage();
         return;
     }
@@ -99,12 +99,12 @@ export async function oneClickTickTick(tab, contextInfo) {
         taskData.content += "Tags: " + tags
     }
 
-    const task = ticktickApi.task.create(taskData);
+    const task = didaApi.task.create(taskData);
     var notification = null;
 
     if (options.showNotification) {
         let newNotification = {
-            title: "TickTick Task Created",
+            title: "滴答任务已创建",
             message: 'Title: ' + plainTitle,
             iconUrl: "/icons/icon256.png",
             type: "basic",
@@ -129,7 +129,7 @@ export async function oneClickTickTick(tab, contextInfo) {
                 chrome.runtime.openOptionsPage();
                 return;
             }
-            throw new Error("An error occured during task creation: " + response.status);
+            throw new Error("创建任务时发生错误: " + response.status);
         } else {
             const data = await response.clone().json();
             console.log("Success: ", data);
@@ -138,7 +138,7 @@ export async function oneClickTickTick(tab, contextInfo) {
         console.log(error);
 
         let updatedContent = {
-            title: "Failed to create task!",
+            title: "创建任务失败!",
             message: error.message,
             buttons: []
         };
@@ -179,10 +179,10 @@ function createNotification(notificationId, options, taskPromise) {
                     .then(response => response.clone().json())
                     .then(data => {
                         if (buttonIndex === 0) {
-                            chrome.tabs.create({ url: 'https://ticktick.com/webapp/#p/' + data.projectId + '/tasks/' + data.id });
+                            chrome.tabs.create({ url: 'https://dida365.com/webapp/#p/' + data.projectId + '/tasks/' + data.id });
                             chrome.notifications.clear(id);
                         } else if (buttonIndex === 1) {
-                            ticktickApi.task.delete(data.projectId, data.id);
+                            didaApi.task.delete(data.projectId, data.id);
                             chrome.notifications.clear(id);
                         }
                     });

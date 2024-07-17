@@ -1,8 +1,9 @@
 import {storage} from '/js/store.js';
 
-export const ticktickApi = {
-    clientId: 'TF8YKgsK67BA1htYrS',
-    clientSecret: '&U2rl3Ci1(hl(zS!DVC6Dt^$#&v2cO07',
+export const didaApi = {
+	// https://developer.dida365.com/manage/991
+    clientId: 'tCd9OW6s2ZtvOllou5',
+    clientSecret: '^ap0H@aNvSK1k*1$1Hp_WLR6lp69!u^w',
     authorized: async function() {
         let token = (await storage.get('token')).token;
         return !!token;
@@ -21,15 +22,15 @@ export const ticktickApi = {
         if (data)
             config.body = JSON.stringify(data);
 
-        const response = await fetch('https://api.ticktick.com/open/v1/' + path, config);
+        const response = await fetch('https://api.dida365.com/open/v1/' + path, config);
         return response;
     },
     task: {
         create: async function(data) {
-            return ticktickApi.rest('POST', 'task', data);
+            return didaApi.rest('POST', 'task', data);
         },
         delete: async function(projectId, taskId) {
-            return ticktickApi.rest('DELETE', `project/${projectId}/task/${taskId}`);
+            return didaApi.rest('DELETE', `project/${projectId}/task/${taskId}`);
         }
     },
     logout: function() {
@@ -42,7 +43,7 @@ export const ticktickApi = {
         var redirectUri = chrome.identity.getRedirectURL();
         var scope = 'tasks:write';
     
-        var authURL = new URL('https://ticktick.com/oauth/authorize');
+        var authURL = new URL('https://dida365.com/oauth/authorize');
         authURL.searchParams.append('client_id', self.clientId); 
         authURL.searchParams.append('scope', scope); 
         authURL.searchParams.append('state', ''); 
@@ -79,7 +80,7 @@ export const ticktickApi = {
         
                     console.log(tokenParams);
         
-                    fetch('https://ticktick.com/oauth/token', {
+                    fetch('https://dida365.com/oauth/token', {
                             method: 'POST',
                             body: new URLSearchParams(tokenParams)
                         })

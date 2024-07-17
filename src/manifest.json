@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "One-Click TickTick",
-  "description": "Instantly create a new TickTick task with a link to the current page in just one click!",
-  "version": "1.4.2",
+  "name": "One-Click Dida365",
+  "description": "只需单击一下，即可立即创建一个新的dida365任务，其中包含指向当前页面的链接！",
+  "version": "1.0.0",
   "background": {
     "service_worker": "/service-worker.js",
     "type": "module"
@@ -34,7 +34,7 @@
     "scripting"
   ],
   "host_permissions": [
-    "https://ticktick.com/oauth/token",
-    "https://api.ticktick.com/*"
+    "https://dida365.com/oauth/token",
+    "https://api.dida365.com/*"
   ]
 }

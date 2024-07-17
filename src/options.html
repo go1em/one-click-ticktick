@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>One-Click TickTick</title>
+  <title>滴答快手</title>
   <link rel="stylesheet" href="/css/bulma.min.css">
   <link rel="stylesheet" href="/css/bulma-switch.min.css">
   <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
@@ -21,7 +21,7 @@
       </div>
       <div class="navbar-item">
         <h1 class="title">
-          One-Click TickTick
+          滴答快手
         </h1>
       </div>
     </div>
@@ -52,28 +52,28 @@
         <div class="column">
           <div class="block">
             <h4 class="title is-4">
-              Task Settings
+              任务设置
             </h4>
             <p class="subtitle">
-              New tasks will have the following settings
+              新任务将具有以下设置
             </p>
 
             <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">Task Title</label>
+                <label class="label">任务标题</label>
               </div>
               <div class="field-body">
                 <div class="field">
                   <div class="control">
                     <div class="select is-fullwidth">
                       <select id="taskTitle">
-                        <option value="tabTitle">Tab Title</option>
-                        <option value="selectedText">Selected Text</option>
+                        <option value="tabTitle">网页标题</option>
+                        <option value="selectedText">选择的内容</option>
                       </select>
                     </div>
                   </div>
                   <p class="help">
-                    "Selected text" only works when using the right-click menu to create tasks.
+                    “所选文本”仅在使用右键单击菜单创建任务时才有效。
                   </p>
                 </div>
               </div>
@@ -81,14 +81,14 @@
 
             <div class="field is-horizontal">
               <div class="field-label is-normal mt-2">
-                <label class="label">Description</label>
+                <label class="label">描述信息</label>
               </div>
               <div class="field-body">
                 <div class="field">
                   <div class="control">
                     <input id="includePageContent" type="checkbox" name="switchRoundedDefault"
                       class="switch is-rounded">
-                    <label for="includePageContent">Include webpage content in task description</label>
+                    <label for="includePageContent">在任务描述中包含网页内容</label>
                   </div>
                 </div>
               </div>
@@ -96,7 +96,7 @@
 
             <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">Target List</label>
+                <label class="label">目标清单</label>
               </div>
               <div class="field-body">
                 <div class="field">
@@ -104,13 +104,13 @@
                     <input id="targetList" class="input" type="text" placeholder="List ID (leave empty = Inbox)">
                   </div>
                   <p class="help">
-                    Leave empty for new tasks to land in your TickTick Inbox.
+                    不填的话，新任务将进入您的收件箱。
                   </p>
                   <p class="help">
-                    To customize, visit the desired list in your browser and look at the URL, e.g. <span
-                      class="is-family-monospace">ticktick.com/webapp/#p/<span
-                        class="has-text-weight-bold">0f7f0ba69f32550a87cfc4d3</span>/tasks</span>. Copy the list ID to
-                    the above text field (in this case the content should be <span
+                    要进行自定义，请在浏览器中访问所需的列表并查看 URL，例如 <span
+                      class="is-family-monospace">dida365.com/webapp/#p/<span
+                        class="has-text-weight-bold">0f7f0ba69f32550a87cfc4d3</span>/tasks</span>. 将列表 ID 复制到
+							上述文本字段（在本例中，内容应为 <span
                       class="is-family-monospace">0f7f0ba69f32550a87cfc4d3</span>).
                   </p>
                 </div>
@@ -119,7 +119,7 @@
 
             <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">Tags</label>
+                <label class="label">标签</label>
               </div>
               <div class="field-body">
                 <div class="field">
@@ -127,7 +127,7 @@
                     <input id="tagsList" class="input" type="text" placeholder="Tag1 Tag2">
                   </div>
                   <p class="help">
-                    Space-separated list of tags to be added to created tasks.
+                    多个标签请用空格分隔。
                   </p>
                 </div>
               </div>
@@ -135,18 +135,18 @@
 
             <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">Due Date</label>
+                <label class="label">到期日</label>
               </div>
               <div class="field-body">
                 <div class="field">
                   <div class="control">
                     <div class="select is-fullwidth">
                       <select id="dueDate">
-                        <option value="-1">None</option>
-                        <option value="0">Today</option>
-                        <option value="1">Tomorrow</option>
-                        <option value="7">In 1 Week</option>
-                        <option value="30">In 1 Month</option>
+                        <option value="-1">无</option>
+                        <option value="0">今天</option>
+                        <option value="1">明天</option>
+                        <option value="7">一周内</option>
+                        <option value="30">一月内</option>
                       </select>
                     </div>
                   </div>
@@ -156,17 +156,17 @@
 
             <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">Priority</label>
+                <label class="label">优先级</label>
               </div>
               <div class="field-body">
                 <div class="field">
                   <div class="control">
                     <div class="select is-fullwidth">
                       <select id="taskPriority">
-                        <option value="0">None</option>
-                        <option value="1">Low</option>
-                        <option value="3">Medium</option>
-                        <option value="5">High</option>
+                        <option value="0">无</option>
+                        <option value="1">低</option>
+                        <option value="3">中</option>
+                        <option value="5">高</option>
                       </select>
                     </div>
                   </div>
@@ -177,21 +177,21 @@
 
           <div class="block pt-4">
             <h4 class="title is-4">
-              Side Effects
+              其它
             </h4>
             <p class="subtitle">
-              Clicking the extension button can also have the following side effects
+              单击扩展按钮还可能产生以下副作用
             </p>
 
             <div class="field is-horizontal">
               <div class="field-label is-normal mt-2">
-                <label class="label">Notifications</label>
+                <label class="label">通知</label>
               </div>
               <div class="field-body">
                 <div class="field">
                   <div class="control">
                     <input id="showNotification" type="checkbox" name="switchRoundedDefault" class="switch is-rounded">
-                    <label for="showNotification">Show notification on task creation</label>
+                    <label for="showNotification">在创建任务时显示通知</label>
                   </div>
                 </div>
               </div>
@@ -205,7 +205,7 @@
                 <div class="field">
                   <div class="control">
                     <input id="autoClose" type="checkbox" name="switchRoundedDefault" class="switch is-rounded">
-                    <label for="autoClose">Close current tab on task creation</label>
+                    <label for="autoClose">在创建任务时关闭当前选项卡</label>
                   </div>
                 </div>
               </div>
@@ -243,7 +243,7 @@
 
   <section id="logoutSection" class="section" style="display:none">
     <div class="container is-max-desktop has-text-centered">
-      <button id="logout" class="button is-outlined">Logout</button>
+      <button id="logout" class="button is-outlined">退出登录</button>
     </div>
   </section>
 
@@ -251,24 +251,24 @@
     <div class="container is-max-desktop">
       <article class="message is-info">
         <div class="message-header">
-          <p>Login Required</p>
+          <p>需要登录</p>
         </div>
         <div class="message-body">
           <div class="block">
-            Please login to TickTick to use the extension. You're either logging in for the first time or your previous
-            authentication has expired.
+            请登录 滴答清单 以使用扩展进程。您要么是第一次登录，要么是之前登录
+			身份验证已过期。
           </div>
           <div class="block">
-            <strong>Note:</strong> A new secure browser window will open in which you'll have to login to TickTick.
-            Afterwards, you'll be asked to grant permission to this extension to create tasks on your behalf - in one
-            click :) All data is either stored locally or in your browser's cloud-synced storage (if enabled by you).
-            Please accept in order for this extension to work!
+            <strong>注意:</strong> 将打开一个新的安全浏览器窗口，您必须在其中登录 滴答清单。
+			之后，系统将要求您授予此扩展进程的权限，以代表您在一个扩展中创建任务
+			点击:)所有数据要幺存储在本地，要幺存储在浏览器的云同步存储中（如果您启用）。
+			请接受，以便此扩展工作！
           </div>
         </div>
       </article>
       <div class="block has-text-centered">
         <button id="login" class="button is-primary is-large js-modal-trigger" data-target="modal-js-example">
-          Login
+          登录
         </button>
       </div>
     </div>
